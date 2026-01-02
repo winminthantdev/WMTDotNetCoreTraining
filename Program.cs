@@ -2,6 +2,7 @@
 
 using System.Data;
 using System.Data.SqlClient;
+using WMTDotNetTraning.ConsoleApp;
 
 Console.WriteLine("Hello, World!");
 // Console.ReadLine();
@@ -26,58 +27,13 @@ Console.WriteLine("Hello, World!");
 
 // 101
 
-string connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=Temporary123;";
-Console.WriteLine("Connection string : " + connectionString);
-SqlConnection connection = new SqlConnection(connectionString);
+AdoDotNetExample AdoDotNetExample = new AdoDotNetExample();
 
-Console.WriteLine("Connection opening...");
-connection.Open();
-Console.WriteLine("Connection opened.");
-
-string query = @"SELECT [BlogId],
-                 [BlogTitle],
-                 [BlogContent],
-                 [DeleteFlag]
-           FROM [dbo].[Tbl_Blogs] where DeleteFlag = 0";
-
-SqlCommand cmd = new SqlCommand(query, connection);
-
-// SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-// DataTable dt = new DataTable();
-// adapter.Fill(dt);
-
-SqlDataReader reader = cmd.ExecuteReader();
-while (reader.Read())
-{
-    Console.WriteLine(reader["BlogId"] + " - " + reader["BlogTitle"] + " - " + reader["BlogContent"]);
-}
+AdoDotNetExample.read();
+// AdoDotNetExample.Create();
+// AdoDotNetExample.Edit();
+// AdoNotNetExample.Delete();
 
 
-
-// foreach (DataRow dr in dt.Rows)
-// {
-//     Console.WriteLine(dr["BlogId"]);
-//     Console.WriteLine(dr["BlogTitle"]);
-//     Console.WriteLine(dr["BlogContent"]);
-//     // Console.WriteLine(dr["DeleteFlag"]);
-// }
-
-Console.WriteLine("Connection closing...");
-connection.Close();
-Console.WriteLine("Connection closed.");
-
-// DataSet
-// DataTable
-// DataRow
-// DataRow
-// DataColumn
-
-// foreach (DataRow dr in dt.Rows)
-// {
-//     Console.WriteLine(dr["BlogId"]);
-//     Console.WriteLine(dr["BlogTitle"]);
-//     Console.WriteLine(dr["BlogContent"]);
-//    // Console.WriteLine(dr["DeleteFlag"]);
-// }
 
 Console.ReadKey();
