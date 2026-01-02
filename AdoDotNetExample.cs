@@ -174,7 +174,7 @@ public class AdoDotNetExample
     
     public void Update()
     {
-        Console.Write("Enter Blog id to edit : ");
+        Console.Write("Enter Blog id to update : ");
         string id = Console.ReadLine();
         
         Console.WriteLine("Blog Title: ");
@@ -212,6 +212,21 @@ public class AdoDotNetExample
 
     }
 
-    
+    public void Delete()
+    {
+        Console.Write("Enter Blog id to delete : ");
+        string id = Console.ReadLine();
+        
+        SqlConnection connection = new SqlConnection(_connectionString);
+        connection.Open(); 
+        string query = $@"DELETE FROM [dbo].[Tbl_Blogs] WHERE [BlogId] = @BlogId";
+        SqlCommand cmd = new SqlCommand(query, connection);
+        cmd.Parameters.AddWithValue("@BlogId", id);
+        int result = cmd.ExecuteNonQuery();
+
+        connection.Close();
+        Console.WriteLine(result == 1 ? "Deleted Successful."  : "Deleted Failed.");
+        
+    }
 
 }
