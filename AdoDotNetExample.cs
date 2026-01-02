@@ -66,4 +66,70 @@ public class AdoDotNetExample
 
     }
     
+    
+    public void Create()
+    {
+        
+        Console.WriteLine("Blog Title: ");
+        string title = Console.ReadLine();
+
+        Console.WriteLine("Blog Author: ");
+        string author = Console.ReadLine();
+
+        Console.WriteLine("Blog Content: ");
+        string content = Console.ReadLine();
+
+        SqlConnection connection = new SqlConnection(_connectionString);
+        connection.Open();
+
+        // string queryInsert = $@"INSERT INTO [dbo].[Tbl_Blogs]
+        //                         (
+        //                          [BlogTitle],
+        //                          [BlogAuthor],
+        //                          [BlogContent],
+        //                          [DeleteFlag])
+        //                      VALUES 
+        //                           ('{title}',
+        //                          '{author}',
+        //                          '{content}',
+        //                          0)";
+
+        string query = $@"INSERT INTO [dbo].[Tbl_Blogs]
+                        (
+                         [BlogTitle],
+                         [BlogAuthor],
+                         [BlogContent],
+                         [DeleteFlag])
+                     VALUES 
+                          (@BlogTitle, @BlogAuthor, @BlogContent,0)";
+
+        SqlCommand cmd = new SqlCommand(query, connection);
+
+        cmd.Parameters.AddWithValue("@BlogTitle", title);
+        cmd.Parameters.AddWithValue("@BlogAuthor", author);
+        cmd.Parameters.AddWithValue("@BlogContent", content);
+
+        // SqlDataAdapter adapter = new SqlDataAdapter(cmd2);
+        // DataTable dt = new DataTable();
+        // adapter.Fill(dt);
+
+        int result = cmd.ExecuteNonQuery();
+
+        connection.Close();
+
+        // if (result == 1)
+        // {
+        //     Console.WriteLine("Saving Successful.");
+        // }
+        // else
+        // {
+        //     Console.WriteLine("Saving Failed.");
+        // }
+
+        Console.WriteLine(result == 1 ? "Saving Successful."  : "Saving Failed.");
+
+    }
+    
+    
+    
 }
