@@ -130,6 +130,47 @@ public class AdoDotNetExample
 
     }
     
+    public void Edit()
+    {
+        
+        SqlConnection connection = new SqlConnection(_connectionString);
+
+        connection.Open();
+
+        Console.Write("Enter Blog id to edit : ");
+        string id = Console.ReadLine();
+
+        string query = $@"SELECT
+                 [BlogId],
+                 [BlogTitle],
+                 [BlogContent],
+                 [DeleteFlag]
+           FROM [dbo].[Tbl_Blogs] where BlogId = @BlogId";
+
+        SqlCommand cmd = new SqlCommand(query, connection);
+        cmd.Parameters.AddWithValue("@BlogId", id);
+        
+        SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+        DataTable  dataTable = new DataTable();
+        dataAdapter.Fill(dataTable);
+
+        if (dataTable.Rows.Count == 0)
+        {
+            Console.WriteLine("Blog not found.");
+            return;
+        }
+
+        foreach (DataRow dr in dataTable.Rows)
+        {
+            Console.WriteLine(dr["BlogId"]);
+            Console.WriteLine(dr["BlogTitle"]);
+            Console.WriteLine(dr["BlogContent"]);
+            // Console.WriteLine(dr["DeleteFlag"]);
+        }
+
+        connection.Close();
+        
+    }
     
     
 }
