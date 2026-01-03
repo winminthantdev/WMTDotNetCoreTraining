@@ -28,7 +28,7 @@ public class DapperExample
         using (IDbConnection db = new SqlConnection(_connectionString))
         {
             string query = "select * from tbl_blogs where DeleteFlag = 0;";
-            var lst = db.Query<BlogDataModel>(query).ToList();
+            var lst = db.Query<BlogDapperDataModel>(query).ToList();
             foreach (var item in lst)
             {
                 Console.WriteLine(item.BlogId);
@@ -54,7 +54,7 @@ public class DapperExample
             
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                int result = db.Execute(query, new BlogDataModel {BlogTitle = title, BlogAuthor = author, BlogContent = content});
+                int result = db.Execute(query, new BlogDapperDataModel {BlogTitle = title, BlogAuthor = author, BlogContent = content});
                 Console.WriteLine(result == 1 ? "Saving Successful."  : "Saving Failed.");
                 
             }
@@ -65,7 +65,7 @@ public class DapperExample
         string query = $@"UPDATE [dbo].[Tbl_Blogs] where DeleteFlag = 0 and BlogId  = @BlogId;";
         using (IDbConnection db = new SqlConnection(_connectionString))
         {
-            var item = db.Query<BlogDataModel>(query, new BlogDataModel {BlogId = blogId}).FirstOrDefault();
+            var item = db.Query<BlogDapperDataModel>(query, new BlogDapperDataModel {BlogId = blogId}).FirstOrDefault();
 
             // if (item == null)
             if ( item is null )
@@ -93,7 +93,7 @@ public class DapperExample
         
         using (IDbConnection db = new SqlConnection(_connectionString))
         {
-            int result = db.Execute(query, new BlogDataModel {BlogId = blogId, BlogTitle = title, BlogAuthor = author, BlogContent = content});
+            int result = db.Execute(query, new BlogDapperDataModel {BlogId = blogId, BlogTitle = title, BlogAuthor = author, BlogContent = content});
             Console.WriteLine(result == 1 ? "Updating Successful."  : "Updating Failed.");
             
         }
@@ -104,7 +104,7 @@ public class DapperExample
         string query = $@"DELETE FROM [dbo].[Tbl_Blogs] where BlogId = @BlogId";
         using (IDbConnection db = new SqlConnection(_connectionString))
         {
-            int result = db.Execute(query, new BlogDataModel {BlogId = blogId});
+            int result = db.Execute(query, new BlogDapperDataModel {BlogId = blogId});
             Console.WriteLine(result == 1 ? "Deleting Successful."  : "Deleting Failed.");
         }
     }

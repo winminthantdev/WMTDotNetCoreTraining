@@ -9,3 +9,4 @@ docker run -d \
 
 ---------------------------------------------------------------
 
+ef core db provider - to view database support packages 
