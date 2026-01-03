@@ -36,7 +36,7 @@ AdoDotNetExample AdoDotNetExample = new AdoDotNetExample();
 
 
 DapperExample dapperExample = new DapperExample();
-dapperExample.Read();
-
+// dapperExample.Read();
+dapperExample.Create("Blog Title One", "Win Min Thant","This is blog content for blog title one.");
 
 Console.ReadKey();
