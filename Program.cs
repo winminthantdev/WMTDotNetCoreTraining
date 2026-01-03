@@ -32,8 +32,11 @@ AdoDotNetExample AdoDotNetExample = new AdoDotNetExample();
 // AdoDotNetExample.read();
 // AdoDotNetExample.Create();
 // AdoDotNetExample.Edit();
-AdoDotNetExample.Delete();
+// AdoDotNetExample.Delete();
 
+
+DapperExample dapperExample = new DapperExample();
+dapperExample.Read();
 
 
 Console.ReadKey();
