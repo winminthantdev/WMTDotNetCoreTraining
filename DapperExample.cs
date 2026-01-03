@@ -59,7 +59,27 @@ public class DapperExample
                 
             }
         }
-    
+
+    public void Edit(int blogId)
+    {
+        string query = $@"UPDATE [dbo].[Tbl_Blogs] where DeleteFlag = 0 and BlogId  = @BlogId;";
+        using (IDbConnection db = new SqlConnection(_connectionString))
+        {
+            var item = db.Query<BlogDataModel>(query, new BlogDataModel {BlogId = blogId}).FirstOrDefault();
+
+            // if (item == null)
+            if ( item is null )
+            {
+                Console.WriteLine("No Data Found.");
+                return;
+            }
+            
+            Console.WriteLine(item.BlogId);
+            Console.WriteLine(item.BlogTitle);
+            Console.WriteLine(item.BlogAuthor);
+            Console.WriteLine(item.BlogContent);
+        }
+    }
     
     public void Update(int blogId, string title, string author, string content)
     {
