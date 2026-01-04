@@ -9,4 +9,28 @@ docker run -d \
 
 ---------------------------------------------------------------
 
-ef core db provider - to view database support packages 
+ef core db provider - to view database support packages
+
+---------------------------------------------------------------
+
+asNoTracking()
+
+select * from tbl_blogs 
+get all data - commit data / uncommit data
+
+--------------
+
+select * from tbl_blogs with (no lock)
+get only data - commit data 
+
+that mean get current data no wait changing or updating data
+
+** not get real-time data
+** use less memory usage
+
+1 - mg mg -1
+2 - mg mg -2
+3 - mg mg -3 -> updating aung aung / get first data mg mg no wait commit 
+4 - mg mg -4
+5 - mg mg -5
+ 
