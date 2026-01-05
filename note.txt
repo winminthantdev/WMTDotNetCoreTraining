@@ -45,3 +45,10 @@ dotnet tool install --global dotnet-ef --version 10.0.1
 
 dotnet ef dbcontext scaffold "Server=.;Database=DotNetTrainingBatch5;User Id=sa;Password=Temporary123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDbContext -f // for all table
 dotnet ef dbcontext scaffold "Server=.;Database=DotNetTrainingBatch5;User Id=sa;Password=Temporary123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDbContext -t Tbl_Name1, Tbl_Name2 -f // manual table name
+
+---------------------------------------------------------------
+
+The ASP.NET Core developer certificate is not trusted
+dotnet dev-certs https --trust
+
+
