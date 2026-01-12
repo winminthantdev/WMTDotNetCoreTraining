@@ -52,3 +52,41 @@ The ASP.NET Core developer certificate is not trusted
 dotnet dev-certs https --trust
 
 
+---------------------------------------------------------------
+
+Visual Studio 2022 Installation
+Microsoft SQL Server 2022
+SSMS ( SQL Server Management System )
+
+C# Basic
+SQL Basic
+
+Console App ( Create Project)
+DTO ( data transfter object )
+Nuget Package
+ADO.NET
+
+Dapper
+- ORM
+- Data Model
+- AsNoTracking
+
+EFCore
+- AppDbContext
+- Database First
+
+Rest API (ASP.NET Core Web API)
+- Swagger 
+- Postman
+- Http Method
+- Http Status Code
+
+---------------------------------------------------------------
+
+Backend API
+
+data model (data access, database) 10 columns
+view model (fronted return data) 2 columns
+
+---------------------------------------------------------------
+
